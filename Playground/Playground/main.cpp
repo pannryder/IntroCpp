@@ -1,11 +1,18 @@
 #include <iostream>
+#include <string>
+
+//notes
+// std::string , can be assigned variable and contain text
+// example
+// std::string myName = "My name here" //clearing string = "" OR myName.clear(); 
+// std::getline(std::cinm myName) //for multiple words
 
 int CheckInput()
 {
 	int TheValue;
 	int counter;
 
-	std::cout << "\033[4;32m[What do you chose to do?]\033[0m\n\n";
+	std::cout << "\033[4;32m[What do you chose to do?]\033[0m\n";
 	std::cin >> TheValue;
 	//Checks if input is a numerical value, then allows for limited re-attempts
 	for (counter = 1; !std::cin.good() && counter < 4; counter = counter + 1)
@@ -24,11 +31,164 @@ void InputFail()
 	exit(0);
 }
 
+void ExitGame()
+{
+	std::cout << "\n\033[4;31m[Oh? Okay...]\n[Goodbye.]\033[0m\n\n";
+	exit(0);
+}
+
+void Hallway1()
+{
+	std::cout << "As the door shuts hard behind you, causing a slight jump from the sound, the thump reverberates in the hallway presented to you.\n"
+		"On the left at the end of the hall is a door, on the right the hall extends around the corner.";
+
+	for (bool InRoom = true; InRoom == true;)
+	{
+		std::cout << "\n\033[0;36m[1 - Go left]\n"
+			"[2 - Go right]\n"
+			"[3 - Go back]\n"
+			"\n[0 - Exit Game]\033[0m\n\n";
+		int PlayerChoice = CheckInput();
+
+		if (PlayerChoice == 0)
+		{
+			ExitGame();
+		}
+
+		else if (PlayerChoice == 1)
+		{
+			std::cout << "\n\033[4;33m[ACTION 1...]\033[0m\n"
+				"Dummy text 1.\n";
+		}
+
+		else if (PlayerChoice == 2)
+		{
+			std::cout << "\n\033[4;33m[ACTION 2...]\033[0m\n"
+				"Dummy text 2.\n";
+		}
+
+		else if (PlayerChoice == 3)
+		{
+			std::cout << "\n\033[4;33m[ACTION...]\033[0m\n"
+				"You turn around and leave back to the hallway...\n";
+			InRoom = false;
+		}
+
+		else
+		{
+			std::cout << "\n\033[4;31m[That's not an option]\n[Type one of the actual options.]\033[0m\n\n";
+		}
+	}
+
+}
+
+void Room1()
+{
+
+}
+
+void Room2()
+{
+	std::cout << "As you enter the room, the unpleasent stench of rotting flesh violates your nostrils.\n"
+		"You don't feel brave enough to search through any of the questionable bags that line the walls within.\n"
+		"The room is dimly lit by a single, dying lightbulb. Walls are stained from something dripping down the walls.\n"
+		"Among the bags is a single table with seemingly a lot of junk laid upon it.\n"; 
+
+	for (bool InRoom = true; InRoom == true;)
+	{
+		std::cout << "\n\033[0;36m[1 - Inspect table]\n"
+			"[2 - Touch bags]\n"
+			"[3 - Leave]\n"
+			"\n[0 - Exit Game]\033[0m\n\n";
+		int PlayerChoice = CheckInput();
+
+		if (PlayerChoice == 0)
+		{
+			ExitGame();
+		}
+
+		else if (PlayerChoice == 1)
+		{
+			std::cout << "\n\033[4;33m[You inspect the table...]\033[0m\n"
+				"Approaching the table, laid upon it's worn, wooden planks is nothing but nonsenical gibberish scribbled upon parchment paper.\n"
+				"Upon further inspection, there's nothing of import to gain amongst it's contents.\n";
+		}
+
+		else if (PlayerChoice == 2)
+		{
+			std::cout << "\n\033[4;33m[You attempt to touch the bags...]\033[0m\n"
+				"Your hand extends slightly but you better judgement stops you.\n";
+		}
+
+		else if (PlayerChoice == 3)
+		{
+			std::cout << "\n\033[4;33m[You leave the room...]\033[0m\n"
+				"You turn around and leave back to the hallway...\n";
+			InRoom = false;
+		}
+
+		else
+		{
+			std::cout << "\n\033[4;31m[That's not an option]\n[Type one of the actual options.]\033[0m\n\n";
+		}
+	}
+
+}
+
+void RoomTemp()
+{
+	std::cout << "Room description.\n";
+
+	for (bool InRoom = true; InRoom == true;)
+	{
+		std::cout << "\n\033[0;36m[1 - ACTION 1]\n"
+			"[2 - ACTION 2]\n"
+			"[3 - Leave]\n"
+			"\n[0 - Exit Game]\033[0m\n\n";
+		int PlayerChoice = CheckInput();
+
+		if (PlayerChoice == 0)
+		{
+			ExitGame();
+		}
+
+		else if (PlayerChoice == 1)
+		{
+			std::cout << "\n\033[4;33m[ACTION 1...]\033[0m\n"
+				"Dummy text 1.\n";
+		}
+
+		else if (PlayerChoice == 2)
+		{
+			std::cout << "\n\033[4;33m[ACTION 2...]\033[0m\n"
+				"Dummy text 2.\n";
+		}
+
+		else if (PlayerChoice == 3)
+		{
+			std::cout << "\n\033[4;33m[ACTION...]\033[0m\n"
+				"You turn around and leave back to the hallway...\n";
+			InRoom = false;
+		}
+
+		else
+		{
+			std::cout << "\n\033[4;31m[That's not an option]\n[Type one of the actual options.]\033[0m\n\n";
+		}
+	}
+
+}
+
+void TravelTesting()
+{
+	
+}
 
 int main()
 {
 	bool ScisorsNearby = true;
 	int NarativeCheck{};
+	TravelTesting();
 	std::cout << "You awaken within a darkly lit room, your face pressed against the cold and old wooden floor.\n"
 		"From this angle, you see a dangling lamp cable, a pair of muddy worn boots and the glisten of silver scissors laid upon the ground.\n"
 		"Despite the fatigue that plagues your body, you feel something binding your hands, causing them to ache.\nAlthough, your legs are free.\n"
@@ -43,14 +203,13 @@ int main()
 
 	if (PlayerChoice == 0)
 	{
-		std::cout << "\n\033[4;31m[You truly don't wish to get out of here? Okay...]\n[Goodbye.]\033[0m\n\n";
-		return(0);
+		ExitGame();
 	}
 
 	else if (PlayerChoice == 1)
 	{
 		NarativeCheck = 1;
-		std::cout << "\n\033[4;33m[You kick the lamp...]\033[0m\n\n"
+		std::cout << "\n\033[4;33m[You kick the lamp...]\033[0m\n"
 			"As you extend your leg, the cord coils around your ankle.\n"
 			"Although you feel weak, you're able to give it a strong tug, causing it to fall off the table it was rest on.\n"
 			"With the shatter of the bulb, the flash of a flame is seen.\n"
@@ -104,33 +263,40 @@ int main()
 			"[2 - Sit up]\n"
 			"[3 - Lay there]\n"
 			"\n[0 - Exit Game]\033[0m\n\n";
-		int PlayerChoice = CheckInput();
+		PlayerChoice = CheckInput();
 
 		if (PlayerChoice == 0)
 		{
-			std::cout << "\n\033[4;31m[Oh? Well then...]\n[Goodbye.]\033[0m\n\n";
-			return(0);
+			ExitGame();
 		}
 
 		else if (PlayerChoice == 1)
 		{
 			NarativeCheck = 1;
-			std::cout << "\n\033[4;33m[Your try to stand up...]\033[0m\n\n"
-				"Dummy text.\n";
+			std::cout << "\n\033[4;33m[You try to stand up...]\033[0m\n"
+				"In attempt to stand up with your limited energy, you rise.\n"
+				"Yet, you feel unstable, uneasy. Your balance wavers.\n"
+				"Black spots begin to fill your vision, your head feels light.\n"
+				"Despite no windflow, you begin to slowly topple.\n"
+				"With a not-so-graceful decent, the corner of the a nearby bench flashes in your vision.\n"
+				"A great white flicker, then dardkness.\n"
+				"\n\033[4;31m[You have died. Try again.]\033[0m";
+			return(0);
 		}
 
 		else if (PlayerChoice == 2)
 		{
-			NarativeCheck = 1;
-			std::cout << "\n\033[4;33m[Your try to sit up...]\033[0m\n\n"
+			NarativeCheck = 2;
+			std::cout << "\n\033[4;33m[You try to sit up...]\033[0m\n"
 				"Dummy text.\n";
 		}
 
 		else if (PlayerChoice == 3)
 		{
-			NarativeCheck = 1;
-			std::cout << "\n\033[4;33m[Your just lay there...]\033[0m\n\n"
-				"You just... lay there. Okay. Sure.\n";
+			NarativeCheck = 3;
+			std::cout << "\n\033[4;33m[You just lay there...]\033[0m\n"
+				"You just... lay there. Okay. Sure. Rot for all I care.\n"
+				"\n\033[4;31m[You have died. Try again.]\033[0m";
 			return(0);
 		}
 
@@ -161,6 +327,7 @@ int main()
 					"[2 - Charge]\n"
 					"[3 - Grab scissors]\n"
 					"\n[0 - Exit Game]\033[0m\n\n";
+				PlayerChoice = CheckInput();
 			}
 
 			else 
@@ -168,9 +335,41 @@ int main()
 				std::cout << "\n\033[0;36m[1 - Speak]\n"
 					"[2 - Charge]\n"
 					"\n[0 - Exit Game]\033[0m\n\n";
+				PlayerChoice = CheckInput();
 			}
 
+			if (PlayerChoice == 0)
+			{
+				ExitGame();
+			}
 
+			else if (PlayerChoice == 1)
+			{
+				NarativeCheck = 1;
+				std::cout << "\n\033[4;33m[You speak up...]\033[0m\n"
+					"Dummy text.\n";
+			}
+
+			else if (PlayerChoice == 2)
+			{
+				NarativeCheck = 2;
+				std::cout << "\n\033[4;33m[You try to charge at the man...]\033[0m\n"
+					"Dummy text.\n";
+			}
+
+			else if (PlayerChoice == 3 && ScisorsNearby == true)
+			{
+				NarativeCheck = 3;
+				ScisorsNearby = false;
+				std::cout << "\n\033[4;33m[You grab the scissors from underneath you...]\033[0m\n"
+					"You just... lay there. Okay. Sure.\n";
+				return(0);
+			}
+
+			else
+			{
+				InputFail();
+			}
 	}
 
 	else
