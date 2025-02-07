@@ -81,7 +81,7 @@ int RoomChecker(Room* CurrentRoom)
 	int CanMoveForward = CurrentRoom->MoveForward;
 	int CanMoveBack = CurrentRoom->MoveBack;
 
-	std::cout << "You are currently in the " << CurrentRoom->RoomName << ".\n" << CurrentRoom->Description << "\n";
+	std::cout << "You are currently in " << CurrentRoom->RoomName << ".\n" << CurrentRoom->Description << "\n";
 	std::cout << "Which way are you going?\n";
 
 	int CurrentMovement = Movement();
@@ -124,7 +124,7 @@ int main()
 
 	Invt Collection = { false, false };
 	Room Room0 = { 0, "Invalid Room", "you're not supposed to be here GET OUT GET OUT GET OUT.", 0, 0, 0, 0 }; //failsafe room
-	Room Room1 = { 1, "the first room", "This is the room you woke up in initally.",0 , 9, 2, 0 }; //room ref 1
+	Room Room1 = { 1, "the first room", "This is the room you woke up in initally. There's a door in front of you and another to your right.",0 , 9, 2, 0 }; //room ref 1
 	Room Room2 = { 2, "a hallway", "This hallway has a door to its left and the hallway extends around the corner to the right.", 3, 4, 0, 1 }; //room ref 2
 	Room Room3 = { 3, "a room with a macabre energy.", "A room filled questionable bags and dark stains.", 0, 0, 0, 2, }; //room ref 3
 	Room Room4 = { 4, "a hallway", "This hallway continues forward. Additionally, theres a door to the left.", 5, 0, 9, 2 }; //room ref 4
@@ -133,7 +133,7 @@ int main()
 	Room Room7 = { 7, "a janitor storage room", "A room filled with very dirty cleaning tools.", 0, 0, 0, 6 }; //room ref 7
 	Room Room8 = { 8, "a room with dirty sheets", "This room contains a single futon with many dirty sheets.", 0, 0, 0, 6 }; //room ref 8
 	Room Room9 = { 9, "a hallway", "At the end of the hall is a door and to your right is a door.", 0, 1, 10, 4, }; //room ref 9
-	Room Room10 = { 10, "a cold room filled with boxes.", "This room feels very cold.", 0, 0, 0, 9 }; //room ref 10
+	Room Room10 = { 10, "a cold room filled with boxes", "This room feels very cold.", 0, 0, 0, 9 }; //room ref 10
 	Room* CurrentRoom; //Current Room reference
 	CurrentRoom = &Room1;
 
