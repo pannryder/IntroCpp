@@ -3,7 +3,7 @@
 class String
 {
 public:
-	char text[255];
+	char text[10];
 	size_t length;
 
 
@@ -12,6 +12,8 @@ public:
 	String(const char initialText[]);
 	
 	String(const char initialText[], size_t length);
+
+	~String();
 
 	size_t Length() const;
 	String& Append(const String& _str);

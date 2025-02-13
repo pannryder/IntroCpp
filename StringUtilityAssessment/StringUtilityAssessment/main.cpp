@@ -1,11 +1,14 @@
 #include "String.h"
 #include <iostream>
-#include <string>
 
 
 
 int main()
 {
-	String Test;
-	std::cout <<;
+	String Testing{};
+	Testing.WriteToConsole();
+	Testing.ToLower();
+	std::cout << "\n";
+	Testing.ToUpper();
+	std::cout <<"\n" << Testing.Length() << "\n";
 }
