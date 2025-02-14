@@ -58,6 +58,8 @@ int String::FindCharacter(const char _chr) const
 {
 	char searchTarget;
 	std::cin >> searchTarget;
+	std::strchr(text,searchTarget);
+	return;
 	//finish this on friday
 
 }

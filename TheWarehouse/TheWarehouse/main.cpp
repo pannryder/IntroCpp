@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <algorithm>
 
 int CheckInput()
 {
@@ -46,21 +47,22 @@ int Movement()
 	std::string MoveDirection;
 
 	std::cin >> MoveDirection;
+	std::transform(MoveDirection.begin(), MoveDirection.end(), MoveDirection.begin(), ::toupper);
 	for (;;)
 	{
-		if (MoveDirection == "Left" || MoveDirection == "left" || MoveDirection == "LEFT")
+		if (MoveDirection == "LEFT" || MoveDirection == "WEST")
 		{
 			return (1);
 		}
-		else if (MoveDirection == "Right" || MoveDirection == "right" || MoveDirection == "RIGHT")
+		else if (MoveDirection == "RIGHT" || MoveDirection == "EAST")
 		{
 			return (2);
 		}
-		else if (MoveDirection == "Forward" || MoveDirection == "forward" || MoveDirection == "FORWARD")
+		else if (MoveDirection == "FORWARD" || MoveDirection == "UP" || MoveDirection == "NORTH")
 		{
 			return (3);
 		}
-		else if (MoveDirection == "Back" || MoveDirection == "back" || MoveDirection == "BACK")
+		else if (MoveDirection == "BACK" || MoveDirection == "DOWN" || MoveDirection == "SOUTH")
 		{
 			return (4);
 		}
@@ -70,6 +72,7 @@ int Movement()
 			std::cin.clear();
 			std::cin.ignore(std::cin.rdbuf()->in_avail());
 			std::cin >> MoveDirection;
+			std::transform(MoveDirection.begin(), MoveDirection.end(), MoveDirection.begin(), ::toupper);
 		}
 
 	}
@@ -83,7 +86,6 @@ int RoomChecker(Room* CurrentRoom)
 	int CanMoveBack = CurrentRoom->MoveBack;
 
 	std::cout << "\n" << CurrentRoom->RoomMap << "\n";
-
 	std::cout << "You are currently in " << CurrentRoom->RoomName << ".\n" << CurrentRoom->Description << "\n";
 	std::cout << "Which way are you going?\n";
 
