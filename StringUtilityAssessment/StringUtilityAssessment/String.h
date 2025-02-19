@@ -3,7 +3,7 @@
 class String
 {
 public:
-	char text[10];
+	char text[100];
 	size_t length;
 
 
@@ -26,6 +26,8 @@ public:
 
 	String& ReadFromConsole();
 	String& WriteToConsole();
+
+	bool operator<(const String& other) const;
 
 private:
 

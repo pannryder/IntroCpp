@@ -10,9 +10,10 @@ String::String()
 	
 }
 
-String::String(const char* _str)
+String::String(const char initialText[])
+	:text{}, length{}
 {
-	strcpy_s(text, _str);
+	strcpy_s(text, initialText);
 }
 
 String::String(const char initialText[], size_t length)
@@ -56,12 +57,8 @@ String& String::ToUpper()
 
 int String::FindCharacter(const char _chr) const
 {
-	char searchTarget;
-	std::cin >> searchTarget;
-	std::strchr(text,searchTarget);
+	char* result = (char*)std::memchr(text, _chr, length);
 	return;
-	//finish this on friday
-
 }
 
 //int String::Replace(const char _find, const char _replace)
@@ -83,4 +80,9 @@ String& String::WriteToConsole()
 {
 	std::cout << text << std::endl;
 		return *this;
+}
+
+bool String::operator<(const String& other) const
+{
+	return std::strcmp(text, other.text) < 0;
 }
