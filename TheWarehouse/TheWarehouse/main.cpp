@@ -127,7 +127,7 @@ int main()
 	bool ValidAnswer = false;
 	bool WinState = false;
 
-	Invt Collection = { false, false };
+	Invt currentCollection = { false, false };
 	Room Room0 = { 0, "Invalid Room", "you're not supposed to be here GET OUT GET OUT GET OUT.", 0, 0, 0, 0, "############\n#          #\n#          #\n#          #\n############\n"}; //failsafe room
 	Room Room1 = { 1, "the first room", "This is the room you woke up in initally. There's a door in front of you and another to your right.",0 , 9, 2, 0, "#####__#####\n#          #\n#          |\n#          #\n############\n"}; //room ref 1
 	Room Room2 = { 2, "a hallway", "This hallway has a door to its left and the hallway extends around the corner to the right.", 3, 4, 0, 1, "############\n   |        \n   #   #####\n   #   #####\n####   #####\n"}; //room ref 2

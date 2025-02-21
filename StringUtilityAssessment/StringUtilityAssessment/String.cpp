@@ -29,13 +29,13 @@ String::String()
 String::String(const char initialText[])
 	:text{}, length{}
 {
-	strcpy_s(text, initialText);
+
 }
 
 String::String(const char initialText[], size_t length)
 	:text{}, length{}
 {
-	strcpy_s(text, initialText);
+
 }
 
 String::~String()
@@ -64,7 +64,7 @@ String& String::Append(const String& _str)
 
 	if (length < 0)
 	{
-		std::strcpy(newText, text);
+		strcpy(newText, text);
 	}
 	strcat(newText, _str.text);
 	length += _str.length;
@@ -123,11 +123,30 @@ int String::Replace(const char _find, const char _replace)
 	}
 }
 
-String& String::ReadFromConsole() 
+String& String::ReadFromConsole()
 {
-	std::string readBuffer;
-	std::getline(std::cin, readBuffer);
-	Append(readBuffer.c_str());
+	//std::istream::sentry inputBuffer(std::cin);
+	//if (!inputBuffer)
+	//{
+	//	return *this;
+	//}
+
+	int nextChar = std::cin.rdbuf()->sgetc();
+	for (;;nextChar = std::cin.rdbuf()->snextc())
+	{
+		if (nextChar == -1)
+		{
+			break;
+		}
+		if (nextChar == '\n')
+		{
+			std::cin.rdbuf()->sbumpc();
+			break;
+		}
+
+		//Append((char)nextChar);
+	}
+
 	return *this;
 }
 
@@ -149,7 +168,7 @@ bool String::operator<(const String& other) const
 
 int String::operator=(const String& other)
 {
-	strcpy_s(text, other.text);
+	strcpy(text, other.text);
 	return 1;
 }
 

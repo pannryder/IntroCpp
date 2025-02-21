@@ -30,10 +30,10 @@ int main()
 
 	String InputOne{};
 	String InputTwo{};
-	std::cout << "Please write your inital input.\n";
-	InputOne.ReadFromConsole();
-	std::cout << "\nPlease write your comparative input.\n";
-	InputTwo.ReadFromConsole();
+	//std::cout << "Please write your inital input.\n";
+	//InputOne.ReadFromConsole();
+	//std::cout << "\nPlease write your comparative input.\n";
+	//InputTwo.ReadFromConsole();
 	std::cout << "\nINITIAL STRING : ";
 	InputOne.WriteToConsole();
 	std::cout << "COMPARATIVE STRING : ";
