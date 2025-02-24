@@ -21,15 +21,26 @@
 // Assignment Operator
 
 String::String()
-	:text{}, length{}
+	: length(0)
 {
-	
+	text = new char[1];
+	text[0] = '\0';
 }
 
 String::String(const char initialText[])
-	:text{}, length{}
 {
-
+	if (initialText)
+	{
+		length = std::strlen(initialText);
+		text = new char[length + 1];
+		std::strcpy(text, initialText);
+	}
+	else
+	{
+		length = 0;
+		text = new char[1];
+		text[0] = '\0';
+	}
 }
 
 String::String(const char initialText[], size_t length)
@@ -62,12 +73,17 @@ String& String::Append(const String& _str)
 	std::size_t newLength = length + _str.length;
 	char* newText = new char[newLength + 1]{};
 
-	if (length < 0)
+	if (text != nullptr && length > 0)
 	{
 		strcpy(newText, text);
 	}
+	else
+	{
+		newText[0] = '\0';
+	}
 	strcat(newText, _str.text);
-	length += _str.length;
+
+	length = newLength;
 
 	delete[] text;
 	text = newText;
@@ -144,7 +160,8 @@ String& String::ReadFromConsole()
 			break;
 		}
 
-		//Append((char)nextChar);
+		char temp[2] = { static_cast<char>(nextChar), '\0' };
+		Append(String(temp));
 	}
 
 	return *this;
