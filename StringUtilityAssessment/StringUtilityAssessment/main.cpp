@@ -55,12 +55,12 @@ int main()
 		else if (Action == 3)
 		{
 			InputOne.ToLower();
-			std::cout << "\n>> Converted " << InputOne.text << " and " << InputTwo.text << " to lowercase.\n";
+			std::cout << "\n>> Converted '" << InputOne.text << "' to lowercase.\n";
 		}
 		else if (Action == 4)
 		{
 			InputOne.ToUpper();
-			std::cout << "\n>> Converted " << InputOne.text << " and " << InputTwo.text << " to uppercase.\n";
+			std::cout << "\n>> Converted '" << InputOne.text << "' to uppercase.\n";
 		}
 		else if (Action == 5)
 		{
