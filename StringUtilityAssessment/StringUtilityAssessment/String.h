@@ -1,11 +1,13 @@
 #pragma once
+#include <cstddef>
 
 class String
 {
-public:
+private:
 	char* text;
 	size_t length;
 
+public:
 
 	String();
 
@@ -14,6 +16,8 @@ public:
 	String(const char initialText[], size_t length);
 
 	~String();
+
+	char ReturnText();
 
 	//Gets the length of a string and returns the length
 	size_t Length() const;
@@ -48,7 +52,8 @@ public:
 	//Replaces characters in the inital string with characters from the comparative string.
 	int operator=(const String& other);
 
-	char operatorss(int n);
+	char& operator[](size_t _index);
+	const char& operator[](size_t _index) const;
 private:
 
 };

@@ -1,17 +1,16 @@
-#pragma once
-
 #include "String.h"
 #include <iostream>
 #include <string>
 
 String::String()
-	: length(0)
+	: length()
 {
 	text = new char[1];
 	text[0] = '\0';
 }
 
 String::String(const char initialText[])
+	: length()
 {
 	if (initialText)
 	{
@@ -28,6 +27,7 @@ String::String(const char initialText[])
 }
 
 String::String(const char initialText[], size_t length)
+	: length()
 {
 	if (initialText)
 	{
@@ -163,7 +163,7 @@ String& String::ReadFromConsole()
 
 String& String::WriteToConsole() 
 {
-	std::cout << text << std::endl;
+	std::cout << text;
 		return *this;
 }
 
@@ -183,15 +183,29 @@ int String::operator=(const String& other)
 	return 1;
 }
 
-char String::operatorss(int n)
+char& String::operator[](size_t _index)
 {
-	char output = text[n];
+	char output = text[_index];
 	if (output != NULL)
 	{
 		return output;
 	}
-	else 
+	else
 	{
-		return 0;
+		output = '\0';
+		return output;
+	}
+}
+const char& String::operator[](size_t _index) const
+{
+	char output = text[_index];
+	if (output != NULL)
+	{
+		return output;
+	}
+	else
+	{
+		output = '\0';
+		return output;
 	}
 }

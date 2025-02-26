@@ -43,24 +43,24 @@ int main()
 	while (Action != 11) {
 		if (Action == 1)
 		{
-			std::cout << ">>The length of your inital string '" << InputOne.text << "' is '" << InputOne.Length() << "'.\n";
-			std::cout << ">>The length of your comparative string '" << InputTwo.text << "' is '" << InputTwo.Length() << "'.\n";
+			std::cout << ">>The length of your inital string '" << InputOne.WriteToConsole() << "' is '" << InputOne.Length() << "'.\n";
+			std::cout << ">>The length of your comparative string '" << InputTwo.ReturnText() << "' is '" << InputTwo.Length() << "'.\n";
 		}
 		else if (Action == 2)
 		{
-			std::cout << "\n>> Appending '" << InputTwo.text << "' to '" << InputOne.text << "'.\n";
-			InputOne.Append(InputTwo.text);
-			std::cout << InputOne.text << "\n";
+			std::cout << "\n>> Appending '" << InputTwo.ReturnText() << "' to '" << InputOne.ReturnText() << "'.\n";
+			InputOne.Append(InputTwo);
+			std::cout << InputOne.ReturnText() << "\n";
 		}
 		else if (Action == 3)
 		{
 			InputOne.ToLower();
-			std::cout << "\n>> Converted '" << InputOne.text << "' to lowercase.\n";
+			std::cout << "\n>> Converted '" << InputOne.ReturnText() << "' to lowercase.\n";
 		}
 		else if (Action == 4)
 		{
 			InputOne.ToUpper();
-			std::cout << "\n>> Converted '" << InputOne.text << "' to uppercase.\n";
+			std::cout << "\n>> Converted '" << InputOne.ReturnText() << "' to uppercase.\n";
 		}
 		else if (Action == 5)
 		{
@@ -74,7 +74,7 @@ int main()
 			}
 			else
 			{
-				std::cout << "'" << SearchInput << "' could not be found in '" << InputOne.text << "'.\n";
+				std::cout << "'" << SearchInput << "' could not be found in '" << InputOne.ReturnText() << "'.\n";
 			}
 		}
 		else if (Action == 6)
@@ -86,43 +86,43 @@ int main()
 			std::cout << "Please input replacement character :\n";
 			std::cin >> ReplaceInput;
 			InputOne.Replace(SearchInput, ReplaceInput);
-			std::cout << InputOne.text << "\n";
+			std::cout << InputOne.ReturnText() << "\n";
 		}
 		else if (Action == 7)
 		{
-			int IsEquals = InputOne.operator==(InputTwo.text);
+			int IsEquals = InputOne.operator==(InputTwo);
 			if (IsEquals == 0)
 			{
-				std::cout << "'" << InputOne.text << "' and '" << InputTwo.text << "' are equal.\n";
+				std::cout << "'" << InputOne.ReturnText() << "' and '" << InputTwo.ReturnText() << "' are equal.\n";
 			}
 			else
 			{
-				std::cout << "'" << InputOne.text << "' and '" << InputTwo.text << "' are NOT equal.\n";
+				std::cout << "'" << InputOne.ReturnText() << "' and '" << InputTwo.ReturnText() << "' are NOT equal.\n";
 			}
 		}
 		else if (Action == 8)
 		{
-			bool IsLessThan = InputOne.operator<(InputTwo.text);
+			bool IsLessThan = InputOne.operator<(InputTwo);
 			if (IsLessThan == true)
 			{
-				std::cout << "'" << InputOne.text << "' comes before '" << InputTwo.text << "' alphabetically.\n";
+				std::cout << "'" << InputOne.ReturnText() << "' comes before '" << InputTwo.ReturnText() << "' alphabetically.\n";
 			}
 			else
 			{
-				std::cout << "'" << InputOne.text << "' comes after '" << InputTwo.text << "' alphabetically.\n";
+				std::cout << "'" << InputOne.ReturnText() << "' comes after '" << InputTwo.ReturnText() << "' alphabetically.\n";
 			}
 		}
 		else if (Action == 9)
 		{
 			InputOne.operator=(InputTwo);
-			std::cout << "The inital string is now '" << InputOne.text << "'.\n";
+			std::cout << "The inital string is now '" << InputOne.ReturnText() << "'.\n";
 		}
 		else if (Action == 10)
 		{
 			int SSinput;
 			std::cout << "Please input a location to find within the inital string :\n";
 			std::cin >> SSinput;
-			char SSoutput = InputOne.operatorss(SSinput);
+			char SSoutput = InputOne.operator[](SSinput);
 			if (SSoutput != 0)
 			{
 				std::cout << "'" << SSoutput << "' can be found at '" << SSinput << "'.\n";
