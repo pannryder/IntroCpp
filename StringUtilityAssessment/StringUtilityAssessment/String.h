@@ -30,7 +30,7 @@ public:
 	//Searchs for the first instance of a character within a string
 	int FindCharacter(const char _chr) const;
 
-
+	//Searches and replaces any instances of inputted character with another
 	int Replace(const char _find, const char _replace);
 
 	//Reads input from the console

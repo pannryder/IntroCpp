@@ -4,22 +4,6 @@
 #include <iostream>
 #include <string>
 
-// -To be implimented-
-// Subscript Operator
-
-// -Implimented-
-// Length
-// Append
-// ToLower
-// ToUpper
-// FindCharacter
-// ReadFromConsole
-// WriteToConsole
-// LessThan Operator
-// Equality Operator
-// Replace
-// Assignment Operator
-
 String::String()
 	: length(0)
 {
@@ -44,14 +28,24 @@ String::String(const char initialText[])
 }
 
 String::String(const char initialText[], size_t length)
-	:text{}, length{}
 {
-
+	if (initialText)
+	{
+		length = std::strlen(initialText);
+		text = new char[length + 1];
+		std::strcpy(text, initialText);
+	}
+	else
+	{
+		length = 0;
+		text = new char[1];
+		text[0] = '\0';
+	}
 }
 
 String::~String()
 {
-
+	delete[] text;
 }
 
 size_t String::Length() const 
@@ -94,14 +88,14 @@ String& String::Append(const String& _str)
 String& String::ToLower() 
 {
 	for (int i = 0; i < strlen(text); i++)
-		putchar(tolower(text[i]));
+		text[i] = (tolower(text[i]));
 	return *this;
 }
 
 String& String::ToUpper() 
 {
-	for (int i=0; i<strlen(text); i++)
-		putchar(toupper(text[i]));
+	for (int i  =0; i < strlen(text); i++)
+		text[i] = (toupper(text[i]));
 	return *this;
 }
 
