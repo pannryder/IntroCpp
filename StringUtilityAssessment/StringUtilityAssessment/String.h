@@ -17,8 +17,6 @@ public:
 
 	~String();
 
-	char ReturnText();
-
 	//Gets the length of a string and returns the length
 	size_t Length() const;
 
@@ -30,6 +28,9 @@ public:
 
 	//Converts the characters in a string to uppercase characters
 	String& ToLower();
+
+	//Copies and replaces one string to another
+	String& Copy(const String& _str);
 
 	//Searchs for the first instance of a character within a string
 	int FindCharacter(const char _chr) const;
@@ -44,15 +45,16 @@ public:
 	String& WriteToConsole();
 
 	//Checks if the strings are equal
-	int operator==(const String& other) const;
+	bool operator==(const String& other) const;
 
 	//Checks which string comes first alphabetically
 	bool operator<(const String& other) const;
 
 	//Replaces characters in the inital string with characters from the comparative string.
-	int operator=(const String& other);
+	String& operator=(const String& other);
 
 	char& operator[](size_t _index);
+
 	const char& operator[](size_t _index) const;
 private:
 

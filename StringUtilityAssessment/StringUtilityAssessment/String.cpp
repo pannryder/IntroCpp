@@ -50,7 +50,7 @@ String::~String()
 
 size_t String::Length() const 
 {
-	return(std::strlen(text));
+	return(length);
 }
 
 String& String::Append(const String& _str)
@@ -85,35 +85,36 @@ String& String::Append(const String& _str)
 	return *this;
 }
 
+String& String::Copy(const String& _str)
+{
+	operator=(_str);
+	return *this;
+}
+
 String& String::ToLower() 
 {
-	for (int i = 0; i < strlen(text); i++)
+	for (int i = 0; i < length; i++)
 		text[i] = (tolower(text[i]));
 	return *this;
 }
 
 String& String::ToUpper() 
 {
-	for (int i  =0; i < strlen(text); i++)
+	for (int i  =0; i < length; i++)
 		text[i] = (toupper(text[i]));
 	return *this;
 }
 
 int String::FindCharacter(const char _chr) const 
 {
-	const char* result = std::strchr(text, _chr);
-	if (result != NULL)
-	{
-		while (result != NULL) {
-			std::cout << "Found '" << _chr << "' at '" << result - text + 1 << "' in '" << text << "'.\n";
-			result = std::strchr(result + 1, _chr);
+	int loc = -1;
+	for (int i = 0; i < length; i++) {
+		if (text[i] == _chr) {
+			loc = i;
+			break;
 		}
-		return 1;
 	}
-	else
-	{
-		return -1;
-	}
+	return loc;
 }
 
 int String::Replace(const char _find, const char _replace)
@@ -121,11 +122,13 @@ int String::Replace(const char _find, const char _replace)
 	const char* Finder = std::strchr(text, _find);
 	if (Finder != NULL)
 	{
-		while (Finder != NULL) {
+		for (int i = 1;;i++) {
 			text[Finder - text] = _replace;
 			Finder = std::strchr(Finder + 1, _find);
+			if (Finder == NULL) {
+				return i;
+			}
 		}
-		return 1;
 	}
 	else
 	{
@@ -167,7 +170,7 @@ String& String::WriteToConsole()
 		return *this;
 }
 
-int String::operator==(const String& other) const 
+bool String::operator==(const String& other) const 
 {
 	return std::strcmp(text, other.text);
 }
@@ -177,35 +180,48 @@ bool String::operator<(const String& other) const
 	return std::strcmp(text, other.text) < 0;
 }
 
-int String::operator=(const String& other)
+String& String::operator=(const String& other)
 {
-	strcpy(text, other.text);
-	return 1;
+	std::size_t newLength = other.length;
+	char* newText = new char[newLength + 1] {};
+
+	if (text != nullptr && length > 0)
+	{
+		strcpy(newText, other.text);
+	}
+	else
+	{
+		newText[0] = '\0';
+	}
+
+	length = newLength;
+
+	delete[] text;
+	text = newText;
+
+	return *this;
 }
 
 char& String::operator[](size_t _index)
 {
-	char output = text[_index];
-	if (output != NULL)
+	if (_index > 0 && _index < length)
 	{
-		return output;
+		return text[_index];
 	}
 	else
 	{
-		output = '\0';
-		return output;
+		return text[length];
 	}
 }
+
 const char& String::operator[](size_t _index) const
 {
-	char output = text[_index];
-	if (output != NULL)
+	if (_index > 0 && _index < length)
 	{
-		return output;
+		return text[_index];
 	}
 	else
 	{
-		output = '\0';
-		return output;
+		return text[length];
 	}
 }
