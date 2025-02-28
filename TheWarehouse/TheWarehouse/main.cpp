@@ -42,12 +42,18 @@ public:
 	bool Key;
 };
 
+std::string toUpper(std::string _input)
+{
+	std::transform(_input.begin(), _input.end(), _input.begin(), ::toupper);
+	return _input;
+}
+
 int Movement()
 {
 	std::string MoveDirection;
 
 	std::cin >> MoveDirection;
-	std::transform(MoveDirection.begin(), MoveDirection.end(), MoveDirection.begin(), ::toupper);
+	MoveDirection = toUpper(MoveDirection);
 	for (;;)
 	{
 		if (MoveDirection == "LEFT" || MoveDirection == "WEST")
@@ -72,7 +78,7 @@ int Movement()
 			std::cin.clear();
 			std::cin.ignore(std::cin.rdbuf()->in_avail());
 			std::cin >> MoveDirection;
-			std::transform(MoveDirection.begin(), MoveDirection.end(), MoveDirection.begin(), ::toupper);
+			MoveDirection = toUpper(MoveDirection);
 		}
 
 	}

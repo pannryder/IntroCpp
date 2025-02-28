@@ -9,14 +9,14 @@ String::String()
 	text[0] = '\0';
 }
 
-String::String(const char initialText[])
+String::String(const char* _str)
 	: length()
 {
-	if (initialText)
+	if (_str)
 	{
-		length = std::strlen(initialText);
+		length = std::strlen(_str);
 		text = new char[length + 1];
-		std::strcpy(text, initialText);
+		std::strcpy(text, _str);
 	}
 	else
 	{
@@ -26,14 +26,13 @@ String::String(const char initialText[])
 	}
 }
 
-String::String(const char initialText[], size_t length)
-	: length()
+String::String(const String& _other)
 {
-	if (initialText)
+	if (_other.text)
 	{
-		length = std::strlen(initialText);
+		length = std::strlen(_other.text);
 		text = new char[length + 1];
-		std::strcpy(text, initialText);
+		std::strcpy(text, _other.text);
 	}
 	else
 	{
@@ -216,7 +215,7 @@ char& String::operator[](size_t _index)
 
 const char& String::operator[](size_t _index) const
 {
-	if (_index > 0 && _index < length)
+	if (_index >= 0)
 	{
 		return text[_index];
 	}
@@ -224,4 +223,8 @@ const char& String::operator[](size_t _index) const
 	{
 		return text[length];
 	}
+}
+
+char& String::Print(){
+	return text;
 }

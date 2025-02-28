@@ -11,11 +11,13 @@ public:
 
 	String();
 
-	String(const char initialText[]);
+	String(const char* _str);
 	
-	String(const char initialText[], size_t length);
+	String(const String& _other);
 
 	~String();
+
+
 
 	//Gets the length of a string and returns the length
 	size_t Length() const;
@@ -56,6 +58,8 @@ public:
 	char& operator[](size_t _index);
 
 	const char& operator[](size_t _index) const;
+
+	char& Print();
 private:
 
 };

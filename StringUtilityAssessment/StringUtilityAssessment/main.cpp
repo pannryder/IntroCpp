@@ -1,5 +1,6 @@
 #include "String.h"
 #include <iostream>
+#include <fstream>
 
 int ActionCheck()
 {
@@ -8,7 +9,7 @@ int ActionCheck()
 	std::cin >> Choice;
 	for (;;)
 	{
-		if (Choice <= 10 && Choice >= 1)
+		if (Choice <= 11 && Choice >= 1)
 		{
 			return (Choice);
 		}
@@ -40,7 +41,7 @@ int main()
 	InputTwo.WriteToConsole();
 	int Action;
 	Action = ActionCheck();
-	while (Action != 11) {
+	while (Action != 12) {
 		if (Action == 1)
 		{
 			std::cout << ">>The length of your inital string '";
@@ -173,6 +174,23 @@ int main()
 			{
 				std::cout << "Nothing can be found at '" << SSinput << "'!\n";
 			}
+		}
+		else if (Action == 11) {
+
+			char SearchInput;
+			char ReplaceInput;
+			std::cout << "To run a proper test, we will need some additional inputs to run by the inital input.\n";
+			std::cout << "Please input a character to search and additonally replace in the inital string :\n";
+			std::cin >> SearchInput;
+			std::cout << "Please input replacement character :\n";
+			std::cin >> ReplaceInput;
+			std::fstream file;
+			file.open("testResults.txt", std::ios::out);
+			file << "\nINITIAL STRING : ";
+			file << InputOne.Print;
+			std::cout << "\nCOMPARATIVE STRING : ";
+			InputTwo.WriteToConsole();
+			file.close();
 		}
 		else
 		{
