@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 
+
 int ActionCheck()
 {
 	std::cout << "\n\nPlease choose a utility function:\n>>1. Lengths of inputted strings\n>>2. Append inital string to comparative string\n>>3. Convert input string to lowercase\n>>4. Convert input string to uppercase\n>>5. Search within inital string\n>>6. Replace all instances of a character within the inital string with another\n>>7. Compare if strings are equal\n>>8. Compare strings alphabetically\n>>9. Replace inital string with comparative string\n>>10. Call character from location in inital string\n";
@@ -9,7 +10,7 @@ int ActionCheck()
 	std::cin >> Choice;
 	for (;;)
 	{
-		if (Choice <= 11 && Choice >= 1)
+		if (Choice <= 10 && Choice >= 1)
 		{
 			return (Choice);
 		}
@@ -25,8 +26,7 @@ int ActionCheck()
 ;
 }
 
-
-int main()
+int interactiveTesting()
 {
 
 	String InputOne{};
@@ -41,7 +41,7 @@ int main()
 	InputTwo.WriteToConsole();
 	int Action;
 	Action = ActionCheck();
-	while (Action != 12) {
+	while (Action != 11) {
 		if (Action == 1)
 		{
 			std::cout << ">>The length of your inital string '";
@@ -142,7 +142,7 @@ int main()
 				InputOne.WriteToConsole();
 				std::cout << "' comes before '";
 				InputTwo.WriteToConsole();
-				std::cout<< "' alphabetically.\n";
+				std::cout << "' alphabetically.\n";
 			}
 			else
 			{
@@ -175,27 +175,16 @@ int main()
 				std::cout << "Nothing can be found at '" << SSinput << "'!\n";
 			}
 		}
-		else if (Action == 11) {
-
-			char SearchInput;
-			char ReplaceInput;
-			std::cout << "To run a proper test, we will need some additional inputs to run by the inital input.\n";
-			std::cout << "Please input a character to search and additonally replace in the inital string :\n";
-			std::cin >> SearchInput;
-			std::cout << "Please input replacement character :\n";
-			std::cin >> ReplaceInput;
-			std::fstream file;
-			file.open("testResults.txt", std::ios::out);
-			file << "\nINITIAL STRING : ";
-			file << InputOne.Print;
-			std::cout << "\nCOMPARATIVE STRING : ";
-			InputTwo.WriteToConsole();
-			file.close();
-		}
 		else
 		{
 			return 0;
 		}
 		Action = ActionCheck();
 	}
+}
+
+int main()
+{
+	interactiveTesting();
+	return 0;
 }

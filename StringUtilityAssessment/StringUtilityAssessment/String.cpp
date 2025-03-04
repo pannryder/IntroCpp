@@ -203,7 +203,7 @@ String& String::operator=(const String& other)
 
 char& String::operator[](size_t _index)
 {
-	if (_index > 0 && _index < length)
+	if (_index >= 0 && _index < length)
 	{
 		return text[_index];
 	}
@@ -215,7 +215,7 @@ char& String::operator[](size_t _index)
 
 const char& String::operator[](size_t _index) const
 {
-	if (_index >= 0)
+	if (_index >= 0 && _index < length)
 	{
 		return text[_index];
 	}
@@ -226,5 +226,5 @@ const char& String::operator[](size_t _index) const
 }
 
 char& String::Print(){
-	return text;
+	return *text;
 }
