@@ -1,6 +1,7 @@
 #include "String.h"
 #include <iostream>
 #include <fstream>
+#include <ctime>
 
 
 int ActionCheck()
@@ -183,8 +184,228 @@ int interactiveTesting()
 	}
 }
 
+void helloWorldTest() {
+	String HelloWorld{ "Hello World!" };
+	String HowAreYou{ "How are you?" };
+	HelloWorld.WriteToConsole();
+	std::cout << "\n";
+	HowAreYou.WriteToConsole();
+	std::cout << "\nTEST Length : ";
+	if (HelloWorld.Length() == 12) {
+		std::cout << "PASSED";
+	}
+	else
+	{
+		std::cout << "FAILED";
+	}
+	std::cout << "\nTEST operator== : ";
+	if ((HelloWorld==HowAreYou) == false) {
+		std::cout << "PASSED";
+	}
+	else
+	{
+		std::cout << "FAILED";
+	}
+	std::cout << "\nTEST operator< : ";
+	if ((HelloWorld < HowAreYou) == true) {
+		std::cout << "PASSED";
+	}
+	else
+	{
+		std::cout << "FAILED";
+	}
+	std::cout << "\nTEST operator[] : ";
+	if (HelloWorld[0] == 'H') {
+		std::cout << "PASSED";
+	}
+	else
+	{
+		std::cout << "FAILED";
+	}
+	std::cout << "\nTEST Append : ";
+	HelloWorld.Append(HowAreYou);
+	if (HelloWorld == "Hello World!How are you?") {
+		std::cout << "PASSED";
+	}
+	else
+	{
+		std::cout << "FAILED";
+	}
+	std::cout << "\nTEST ToUpper : ";
+	HelloWorld.ToUpper();
+	if (HelloWorld == "HELLO WORLD!HOW ARE YOU?") {
+		std::cout << "PASSED";
+	}
+	else
+	{
+		std::cout << "FAILED";
+	}
+	std::cout << "\nTEST ToLower : ";
+	HelloWorld.ToLower();
+	if (HelloWorld == "hello world!how are you?") {
+		std::cout << "PASSED";
+	}
+	else
+	{
+		std::cout << "FAILED";
+	}
+	std::cout << "\nTEST FindCharacter : ";
+	if (HelloWorld.FindCharacter('o') == 4) {
+		std::cout << "PASSED";
+	}
+	else
+	{
+		std::cout << "FAILED";
+	}
+	std::cout << "\nTEST Replace : ";
+	HelloWorld.Replace('o', 'f');
+	if (HelloWorld == "hellf wfrld!hfw are yfu?") {
+		std::cout << "PASSED";
+	}
+	else
+	{
+		std::cout << "FAILED";
+	}
+	std::cout << "\nTEST operator= : ";
+	HelloWorld=HowAreYou;
+	if (HelloWorld == "How are you?") {
+		std::cout << "PASSED";
+	}
+	else
+	{
+		std::cout << "FAILED";
+	}
+
+
+
+}
+
+void printTextToFile() {
+	time_t currentTime;
+	time(&currentTime);
+	std::fstream file;
+	file.open("testResults.txt", std::ios::out);
+	file << "Test start!\nPreformed at : " << ctime(&currentTime);
+	int score = 0;
+	String HelloWorld{ "Hello World!" };
+	String HowAreYou{ "How are you?" };
+	file << "\nTEST 1 Length : ";
+	if (HelloWorld.Length() == 12) {
+		score++;
+		file << "PASSED";
+
+	}
+	else
+	{
+		file << "FAILED";
+	}
+	file << "\nTEST 2 operator== : ";
+	if ((HelloWorld == HowAreYou) == false) {
+		file << "PASSED";
+		score++;
+	}
+	else
+	{
+		file << "FAILED";
+	}
+	file << "\nTEST 3 operator< : ";
+	if ((HelloWorld < HowAreYou) == true) {
+		file << "PASSED";
+		score++;
+	}
+	else
+	{
+		file << "FAILED";
+	}
+	file << "\nTEST 4 operator[] : ";
+	if (HelloWorld[0] == 'H') {
+		file << "PASSED";
+		score++;
+	}
+	else
+	{
+		file << "FAILED";
+	}
+	file << "\nTEST 5 Append : ";
+	HelloWorld.Append(HowAreYou);
+	if (HelloWorld == "Hello World!How are you?") {
+		file << "PASSED";
+		score++;
+	}
+	else
+	{
+		file << "FAILED";
+	}
+	file << "\nTEST 6 ToUpper : ";
+	HelloWorld.ToUpper();
+	if (HelloWorld == "HELLO WORLD!HOW ARE YOU?") {
+		file << "PASSED";
+		score++;
+	}
+	else
+	{
+		file << "FAILED";
+	}
+	file << "\nTEST 7 ToLower : ";
+	HelloWorld.ToLower();
+	if (HelloWorld == "hello world!how are you?") {
+		file << "PASSED";
+		score++;
+	}
+	else
+	{
+		file << "FAILED";
+	}
+	file << "\nTEST 8 FindCharacter : ";
+	if (HelloWorld.FindCharacter('o') == 4) {
+		file << "PASSED";
+		score++;
+	}
+	else
+	{
+		file << "FAILED";
+	}
+	file << "\nTEST 9 Replace : ";
+	HelloWorld.Replace('o', 'f');
+	if (HelloWorld == "hellf wfrld!hfw are yfu?") {
+		file << "PASSED";
+		score++;
+	}
+	else
+	{
+		file << "FAILED";
+	}
+	file << "\nTEST 10 operator= : ";
+	HelloWorld = HowAreYou;
+	if (HelloWorld == "How are you?") {
+		file << "PASSED";
+		score++;
+	}
+	else
+	{
+		file << "FAILED";
+	}
+	float successPer = (score/10)*100;
+	file << "\nSuccess rate : " << successPer << "%\n";
+	file.close();
+}
+
 int main()
 {
-	interactiveTesting();
-	return 0;
+	int testPick;
+	std::cout << "||Please choose\n|| 1 for function test\n|| 2 to output funtion test to text file\n|| 3 for interactive testing\n";
+	std::cin >> testPick;
+	if (testPick == 1) {
+		helloWorldTest();
+	}
+	else if (testPick == 3) {
+		interactiveTesting();
+	}
+	else if (testPick == 2) {
+		printTextToFile();
+	}
+	else
+	{
+		return 0;
+	}
 }

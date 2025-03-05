@@ -171,7 +171,12 @@ String& String::WriteToConsole()
 
 bool String::operator==(const String& other) const 
 {
-	return std::strcmp(text, other.text);
+	int i = std::strcmp(text, other.text);
+	if (i == 0) {
+		return true;
+	}
+	else
+		return false;
 }
 
 bool String::operator<(const String& other) const 
