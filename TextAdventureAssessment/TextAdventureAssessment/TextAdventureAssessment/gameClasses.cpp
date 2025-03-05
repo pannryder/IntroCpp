@@ -1,4 +1,9 @@
 #include "gameClasses.h"
+#include "Item.h"
+#include "Player.h"
+#include "Spell.h"
+#include "Actions.h"
+#include "Room.h"
 #include <iostream>
 #include <string>
 #include <algorithm>
@@ -24,21 +29,7 @@ using std::transform;
 //}
 //
 
-//--- Room
 
-Room::Room(string descript, Item* item) 
-{
-	description = descript;
-}
-
-Room::~Room() 
-{
-}
-
-const void Room::Description() 
-{
-	cout << description;
-}
 
 //--- Item
 
@@ -50,14 +41,30 @@ void Item::Use()
 {
 }
 
+//--- Room
 
+Room::Room(string descript, Item* item)
+{
+	description = descript;
+}
+
+Room::~Room()
+{
+}
+
+void Room::Description() const
+{
+	cout << description;
+}
 
 //--- Player
 Player::Player(string _name, string _description, int _hp, int _mp)
 {
 	name = _name;
 	description = _description;
+	HPMax = _hp;
 	HP = _hp;
+	MPMax = _mp;
 	MP = _mp;
 }
 
@@ -96,7 +103,27 @@ void Spell::Cast()
 //	;
 //}
 
+BoxOfDonuts::BoxOfDonuts()
+	: count(6)
+{
+}
 
+const void BoxOfDonuts::Description()
+{
+	cout << "A wooden box containg donuts, the Emperor's favorite snack. ";
+	if (count > 0) {
+		cout << "There's currently " << count << " in the box.\n";
+	}
+	else {
+		cout << "There's no donuts left.\n";
+	}
+}
+
+void BoxOfDonuts::Use()
+{
+	if (count > 0)
+		count = count - 1;
+}
 
 string toUpper(string _input)
 {
@@ -125,27 +152,7 @@ void Cat::Use()
 	}
 }
 
-BoxOfDonuts::BoxOfDonuts()
-	: count(6)
-{
-}
 
-const void BoxOfDonuts::Description()
-{
-	cout << "A wooden box containg donuts, the Emperor's favorite snack. ";
-	if (count > 0) {
-		cout << "There's currently " << count << " in the box.\n";
-	}
-	else {
-		cout << "There's no donuts left.\n";
-	}
-}
-
-void BoxOfDonuts::Use()
-{
-	if (count > 0)
-	count = count - 1;
-}
 
 Lamp::Lamp()
 	: turnedOn(false)
@@ -166,6 +173,17 @@ const void Lamp::Description()
 void Lamp::Use()
 {
 	turnedOn = !turnedOn;
+}
+
+EmptyHand::EmptyHand()
+{
+
+}
+void EmptyHand::Use() {
+
+}
+const void EmptyHand::Description() {
+	cout << "Your hand is empty.";
 }
 
 int Action()
@@ -242,7 +260,28 @@ int Movement()
 //}
 //
 
-int Attack(Player& _target , Spell& _dmg)
+int Attack(Player& _attacker, Player& _target , Spell& _dmg)
 {
+	cout << _attacker.Name() << " attacks with "<< _dmg.name <<" dealing " << _dmg.damage << " damage!\n";
 	return _target.HP = _target.HP - _dmg.damage;
+}
+
+int Heal(Player& _healer, Player& _target, Spell& _dmg)
+{
+	cout << _healer.Name() << " heals " << _dmg.damage << "HP!\n";
+	if (_target.HP + _dmg.damage > _target.HPMax)
+	{
+		return _target.HPMax;
+	}
+	else {
+		return _target.HP = _target.HP + _dmg.damage;
+	}
+
+}
+
+
+
+void CurrentHP(Player& _target)
+{
+	cout << _target.Name() << " is at " << _target.HP << "/" << _target.HPMax << "HP.\n";
 }

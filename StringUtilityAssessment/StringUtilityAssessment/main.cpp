@@ -286,7 +286,7 @@ void printTextToFile() {
 	std::fstream file;
 	file.open("testResults.txt", std::ios::out);
 	file << "Test start!\nPreformed at : " << ctime(&currentTime);
-	int score = 0;
+	float score = 0;
 	String HelloWorld{ "Hello World!" };
 	String HowAreYou{ "How are you?" };
 	file << "\nTEST 1 Length : ";
@@ -386,8 +386,9 @@ void printTextToFile() {
 		file << "FAILED";
 	}
 	float successPer = (score/10)*100;
-	file << "\nSuccess rate : " << successPer << "%\n";
+	file << "\nSuccess rate : " << successPer << "%\n\n";
 	file.close();
+	std::cout << "Test completed! Please check 'testResults.txt' for the results.\n";
 }
 
 int main()

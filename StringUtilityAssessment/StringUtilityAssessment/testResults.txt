@@ -1,5 +1,5 @@
 Test start!
-Preformed at : Wed Mar  5 13:48:26 2025
+Preformed at : Wed Mar  5 14:00:54 2025
 
 TEST 1 Length : PASSED
 TEST 2 operator== : PASSED
@@ -12,3 +12,4 @@ TEST 8 FindCharacter : PASSED
 TEST 9 Replace : PASSED
 TEST 10 operator= : PASSED
 Success rate : 100%
+
