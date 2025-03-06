@@ -12,6 +12,8 @@ void CurrentHP(Player& _target);
 int Movement();
 string toUpper(string _input);
 int Battle(Player& _player, Player& _npc);
+void playerTurn(Player& _player, Player& _target);
+Spell& getSpell(string _spell);
 
 int Action()
 {
@@ -130,12 +132,54 @@ int Attack(Player& _attacker, Player& _target, Spell& _spell)
 	}
 }
 
-//int Battle(Player& _player, Player& _npc) {
-//	while (_player.HP != 0) {
-//
-//	}
-//
-//}
+int Battle(Player& _player, Player& _npc) {
+	for (int turns = 1; _player.HP != 0; turns++) 
+	{
+		if (_player.HP != 0)
+		cout << "Round " << turns << ".\n";
+
+	}
+
+}
+
+Spell& getSpell(string _spell) {
+
+}
+
+void playerTurn(Player& _player, Player& _target) {
+	cout << "What action would you like to preform?\nCAST | ITEM | INFO\n";
+	string Action;
+	cin >> Action;
+	Action = toUpper(Action);
+	for (;;)
+	{
+		if (Action == "CAST")
+		{
+			string spell;
+			cout << "What spell would you like to use?";
+			cin >> spell;
+			Attack(_player, _target, spell);
+			return;
+		}
+		else if (Action == "ITEM" || Action == "USE ITEM")
+		{
+			return;
+		}
+		else if (Action == "INFO")
+		{
+			return;
+		}
+		else
+		{
+			cout << "Please write a valid action.\n";
+			cin.clear();
+			cin.ignore(cin.rdbuf()->in_avail());
+			cin >> Action;
+			Action = toUpper(Action);
+		}
+
+	}
+}
 
 void CurrentHP(Player& _target)
 {

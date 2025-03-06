@@ -34,6 +34,7 @@ Player::Player(string _name, string _description, int _hp, int _mp, vector<strin
 	MPMax = _mp;
 	MP = _mp;
 	spells = spellList;
+
 }
 
 Player::~Player()
