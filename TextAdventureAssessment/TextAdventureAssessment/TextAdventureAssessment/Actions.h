@@ -11,6 +11,7 @@ int Attack(Player& _attacker, Player& _target, Spell& _spell);
 void CurrentHP(Player& _target);
 int Movement();
 string toUpper(string _input);
+int Battle(Player& _player, Player& _npc);
 
 int Action()
 {
@@ -86,6 +87,8 @@ int Movement()
 	}
 }
 
+
+
 //int UseItem()
 //{
 //	;
@@ -109,8 +112,15 @@ int Attack(Player& _attacker, Player& _target, Spell& _spell)
 		}
 		else
 		{
-			cout << _attacker.Name() << " attacks with " << _spell.name << ", dealing " << _spell.damage << " damage!\n";
-			return _target.HP = _target.HP - _spell.damage;
+			if (_target.HP - _spell.damage <= 0)
+			{
+				cout << _attacker.Name() << " attacks with " << _spell.name << ", dealing " << _spell.damage << " damage!\n";
+				return _target.HP = 0;
+			}
+			else {
+				cout << _attacker.Name() << " attacks with " << _spell.name << ", dealing " << _spell.damage << " damage!\n";
+				return _target.HP = _target.HP - _spell.damage;
+			}
 		}
 	}
 	else
@@ -120,6 +130,12 @@ int Attack(Player& _attacker, Player& _target, Spell& _spell)
 	}
 }
 
+//int Battle(Player& _player, Player& _npc) {
+//	while (_player.HP != 0) {
+//
+//	}
+//
+//}
 
 void CurrentHP(Player& _target)
 {
