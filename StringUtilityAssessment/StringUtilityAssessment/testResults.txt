@@ -1,5 +1,5 @@
 Test start!
-Preformed at : Wed Mar  5 14:00:54 2025
+Preformed at : Thu Mar  6 15:11:44 2025
 
 TEST 1 Length : PASSED
 TEST 2 operator== : PASSED

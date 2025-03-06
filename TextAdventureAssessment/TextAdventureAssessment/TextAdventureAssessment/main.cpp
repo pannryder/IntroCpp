@@ -1,4 +1,11 @@
 #include "gameClasses.cpp"
+#include "gameClasses.h"
+#include "Item.h"
+#include "Player.h"
+#include "Spell.h"
+#include "Actions.h"
+#include "Room.h"
+#include "Game.h"
 #include <iostream>
 #include <string>
 #include <algorithm>
@@ -8,26 +15,19 @@ using std::cin;
 using std::cout;
 using std::transform;
 
-void main()
+int main()
 {
-	Player goblin("Goblin", "Green thing", 10, 5);
-	Cat Mittens;
-	Mittens.Description();
-	Mittens.Use();
-	Mittens.Use();
-	Mittens.Use();
-	Mittens.Use();
 	string playerName;
 	cin >> playerName;
-	Player playerCharacter(playerName, "Wears yellow robes", 25, 10);
-	Spell RedBlast("Red Blast", 20);
-	Spell WhiteBlast("White Blast", 10);
+	Player playerCharacter(playerName, "Wears yellow robes", 25, 10,{ "BREATHE","ERRUPTION","IMPACT","INFERNO" });
 	cout << playerCharacter.Name() << ".\n" << playerCharacter.Description() << ".\n";
 	CurrentHP(playerCharacter);
-	Attack(goblin,playerCharacter,RedBlast);
+	Attack(goblin, playerCharacter, Inferno);
 	CurrentHP(playerCharacter);
-	Heal(playerCharacter,playerCharacter,WhiteBlast);
+	Attack(playerCharacter, playerCharacter, Breathe);
+	Attack(playerCharacter, playerCharacter, Breathe);
+	Attack(playerCharacter, playerCharacter, Breathe);
 	CurrentHP(playerCharacter);
-	return;
+	return (0);
 }
 
