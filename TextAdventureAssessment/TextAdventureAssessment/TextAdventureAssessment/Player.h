@@ -28,7 +28,9 @@ public:
 	bool FindSpell(string spell);
 };
 
-Player::Player() {
+Player::Player()
+	:HP(0), HPMax(0), MP(0), MPMax(0)
+{
 }
 
 Player::Player(string _name, string _description, int _hp, int _mp, vector<string> spellList)
@@ -40,7 +42,6 @@ Player::Player(string _name, string _description, int _hp, int _mp, vector<strin
 	MPMax = _mp;
 	MP = _mp;
 	spells = spellList;
-
 }
 
 Player::~Player()
@@ -70,4 +71,5 @@ bool Player::FindSpell(string spell)
 	}
 }
 
-Player goblin("Goblin", "Green thing", 50, 50, {"IMPACT","INFERNO" });
+Player HotHeadPawn("Hot-Headed Pawn", "A Pawn like yourself, but seems to have a lust for combat training.\n", 50, 50, { "IMPACT","INFERNO" });
+Player Bishop("Bishop", "A soldier who outranks you, but something seems off about him...\n", 70, 80, { "IMPACT","INFERNO" });

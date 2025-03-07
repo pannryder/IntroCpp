@@ -39,13 +39,6 @@ public:
 	void Use();
 };
 
-class EmptyHand : public Item {
-public:
-	EmptyHand();
-	const void Description();
-	void Use();
-};
-
 const void Item::Description()
 {
 }
@@ -61,7 +54,7 @@ BoxOfDonuts::BoxOfDonuts()
 
 const void BoxOfDonuts::Description()
 {
-	cout << "A wooden box containg donuts, the Emperor's favorite snack. ";
+	cout << "A wooden box containg donuts, the Emperor's favorite snack. They're known to restore magic power if needed.\n";
 	if (count > 0) {
 		cout << "There's currently " << count << " in the box.\n";
 	}
@@ -77,9 +70,17 @@ void BoxOfDonuts::Use()
 void BoxOfDonuts::UseDonut(Player& _user) {
 	if (count > 0)
 	{
-		_user.MP = _user.MP + restorePoints;
+		if (_user.MP + restorePoints > _user.MPMax)
+		{
+			_user.MP = _user.MPMax;
+		}
+		else {
+			_user.MP = _user.MP + restorePoints;
+		}
 		count = count - 1;
-		cout << "You ate a donut, with " << count << "remaining.\n";
+		cout << "You ate a donut, with " << count << " remaining.\n";
+		cout << _user.Name() << " is at " << _user.MP << "/" << _user.MPMax << "MP.\n";
+		
 	}
 	else
 	{

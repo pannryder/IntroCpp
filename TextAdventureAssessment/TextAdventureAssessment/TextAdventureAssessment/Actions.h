@@ -9,9 +9,10 @@
 using std::transform;
 using std::string;
 
-void Action(Room& _room);
+void Action(Player& _player, Room& _room);
 int Attack(Player& _attacker, Player& _target, Spell& _spell);
 void CurrentHP(Player& _target);
+void CurrentMP(Player& _target);
 int Movement(Room& _room);
 string toUpper(string _input);
 void Battle(Player& _player, Player& _npc);
@@ -20,7 +21,7 @@ Spell& getSpell(string _spell);
 void enemyTurn(Player& _enemy, Player& _target);
 Room& roomChange(int _newRoom);
 
-void Action(Room& _room)
+void Action(Player& _player, Room& _room)
 {
 	cout << "What action would you like to preform?\nMOVE | SEARCH\n";
 	string Action;
@@ -30,12 +31,64 @@ void Action(Room& _room)
 	{
 		if (Action == "MOVE")
 		{
-			Movement(_room);
 			return;
 		}
 		else if (Action == "SEARCH")
 		{
-			return;
+			if (_room.item == mittens) {
+				cout << "You found something!\n";
+				Mittens.Description();
+				cout << "Would you like to pet Mittens? \n"
+					<< "YES | NO\n";
+				string itemChoice;
+				cin >> itemChoice;
+				itemChoice = toUpper(itemChoice);
+				if (itemChoice == "YES") {
+					Mittens.Use();
+					return;
+				}
+				else {
+					return;
+				}
+			}
+
+			else if (_room.item == lantern) {
+				cout << "You found something!\n";
+				Lantern.Description();
+				cout << "Would you like use the lantern? \n"
+					<< "YES | NO\n";
+				string itemChoice;
+				cin >> itemChoice;
+				itemChoice = toUpper(itemChoice);
+				if (itemChoice == "YES") {
+					Lantern.Use();
+					r9.isLocked = false;
+					return;
+				}
+				else {
+					return;
+				}
+			}
+			else if (_room.item == donuts) {
+				cout << "You found something!\n";
+				EmpDonuts.Description();
+				cout << "Would you like to eat one ? \n"
+					<< "YES | NO\n";
+				string itemChoice;
+				cin >> itemChoice;
+				itemChoice = toUpper(itemChoice);
+				if (itemChoice == "YES") {
+					EmpDonuts.UseDonut(_player);
+					return;
+				}
+				else {
+					return;
+				}
+			}
+			else {
+				cout << "There's nothing really of note within this room.\n";
+				return;
+			}
 		}
 		else
 		{
@@ -73,7 +126,13 @@ int Movement(Room& _room)
 		}
 		else if (MoveDirection == "UP" && _room.RelativeN != 0 || MoveDirection == "NORTH" && _room.RelativeN != 0)
 		{
-			return _room.RelativeN;
+			if (_room.isLocked != true)
+			{
+				return _room.RelativeN;
+			}
+			else
+				cout << "This room seems to be locked...\nYou remember hearing somewhere that the lock is connected to the light power of another room.\nWhat an odd mechanisim to have...\n";
+				return _room.RoomID;
 		}
 		else if (MoveDirection == "DOWN" && _room.RelativeS != 0 || MoveDirection == "SOUTH" && _room.RelativeS != 0)
 		{
@@ -102,9 +161,11 @@ int Attack(Player& _attacker, Player& _target, Spell& _spell)
 				cout << _attacker.Name() << " heals with " << _spell.name << ", restoring " << _spell.damage << "HP!\n";
 				if (_target.HP + _spell.damage > _target.HPMax)
 				{
+					_attacker.MP = _attacker.MP - _spell.cost;
 					return _target.HP = _target.HPMax;
 				}
 				else {
+					_attacker.MP = _attacker.MP - _spell.cost;
 					return _target.HP = _target.HP + _spell.damage;
 				}
 			}
@@ -112,10 +173,12 @@ int Attack(Player& _attacker, Player& _target, Spell& _spell)
 			{
 				if (_target.HP - _spell.damage <= 0)
 				{
+					_attacker.MP = _attacker.MP - _spell.cost;
 					cout << _attacker.Name() << " attacks with " << _spell.name << ", dealing " << _spell.damage << " damage!\n";
 					return _target.HP = 0;
 				}
 				else {
+					_attacker.MP = _attacker.MP - _spell.cost;
 					cout << _attacker.Name() << " attacks with " << _spell.name << ", dealing " << _spell.damage << " damage!\n";
 					return _target.HP = _target.HP - _spell.damage;
 				}
@@ -137,23 +200,29 @@ int Attack(Player& _attacker, Player& _target, Spell& _spell)
 void Battle(Player& _player, Player& _npc) {
 	bool isPlayerTurn = true;
 	int round = 1;
+	cout << "BATTLE START!\n"
+		<< "Target : " << _npc.Name() << "\n"
+		<< _npc.Description() << "\n\n";
+
 	for (int turns = 1; _player.HP != 0; turns++) 
 	{
 
 		if (isPlayerTurn == true) {
 			if (_player.HP <= 0)
 			{
-				cout << "you dead.\n";
 				break;
 			}
-			cout << "Round " << round << ".\n";
+			cout << "[[[  Round " << round << "  ]]]\n"
+				<< _player.Name() << "\n";
+			CurrentHP(_player);
+			CurrentMP(_player);
 			playerTurn(_player, _npc);
 			isPlayerTurn = false;
 		}
 		else
 		{
 			if (_npc.HP <= 0) {
-				cout << _npc.Name() << " dead.\n";
+				cout << _npc.Name() << " has been knocked out!\n";
 				break;
 			}
 			enemyTurn(_npc, _player);
@@ -189,7 +258,13 @@ void playerTurn(Player& _player, Player& _target) {
 			string spell;
 			cout << "What spell would you like to use?\n";
 			cin >> spell;
-			Attack(_player, _target, getSpell(spell));
+			Spell& beingCasted = getSpell(spell);
+			if (_player.MP >= beingCasted.cost) {
+				Attack(_player, _target, beingCasted);
+			}
+			else {
+				cout << _player.Name() << " doesn't have enough MP to cast that!\n";
+			}
 			break;
 		}
 
@@ -219,6 +294,11 @@ void enemyTurn(Player& _enemy, Player& _target) {
 void CurrentHP(Player& _target)
 {
 	cout << _target.Name() << " is at " << _target.HP << "/" << _target.HPMax << "HP.\n";
+}
+
+void CurrentMP(Player& _target)
+{
+	cout << _target.Name() << " is at " << _target.MP << "/" << _target.MPMax << "MP.\n";
 }
 
 Room& roomChange(int _newRoom) {

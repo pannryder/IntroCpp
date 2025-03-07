@@ -6,7 +6,10 @@
 
 int main()
 {
-	Maze.Run();
+	PawnMaze.Run();
+	int x;
+	cout << "\nPress any key and hit enter to end the game...";
+	cin >> x;
 	return(0);
 }
 
