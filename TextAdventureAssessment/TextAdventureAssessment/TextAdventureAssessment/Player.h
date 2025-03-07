@@ -2,10 +2,12 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include "Item.h"
 
 using std::string;
 using std::vector;
 using std::transform;
+using std::cout;
 
 class Player {
 
@@ -18,12 +20,16 @@ public:
 	int HPMax;
 	int MP;
 	int MPMax;
+	Player();
 	Player(string _name, string _description, int _hp, int _mp, vector<string> spellList);
 	~Player();
 	const string Name();
 	const string Description();
 	bool FindSpell(string spell);
 };
+
+Player::Player() {
+}
 
 Player::Player(string _name, string _description, int _hp, int _mp, vector<string> spellList)
 {
@@ -64,4 +70,4 @@ bool Player::FindSpell(string spell)
 	}
 }
 
-Player goblin("Goblin", "Green thing", 10, 5, { "IMPACT" });
+Player goblin("Goblin", "Green thing", 50, 50, {"IMPACT","INFERNO" });

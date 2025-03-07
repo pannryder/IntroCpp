@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include "Player.h"
 
 using std::string;
 using std::cin;
@@ -14,10 +15,12 @@ public:
 
 class BoxOfDonuts : public Item {
 	int count;
+	int restorePoints;
 public:
 	BoxOfDonuts();
 	const void Description();
 	void Use();
+	void UseDonut(Player& _user);
 };
 
 class Lamp : public Item {
@@ -43,11 +46,6 @@ public:
 	void Use();
 };
 
-BoxOfDonuts::BoxOfDonuts()
-	: count(6)
-{
-}
-
 const void Item::Description()
 {
 }
@@ -56,6 +54,10 @@ void Item::Use()
 {
 }
 
+BoxOfDonuts::BoxOfDonuts()
+	: count(6), restorePoints(10)
+{
+}
 
 const void BoxOfDonuts::Description()
 {
@@ -70,8 +72,19 @@ const void BoxOfDonuts::Description()
 
 void BoxOfDonuts::Use()
 {
+}
+
+void BoxOfDonuts::UseDonut(Player& _user) {
 	if (count > 0)
+	{
+		_user.MP = _user.MP + restorePoints;
 		count = count - 1;
+		cout << "You ate a donut, with " << count << "remaining.\n";
+	}
+	else
+	{
+		cout << "There's no donuts in the box.\n";
+	}
 }
 
 Cat::Cat()
@@ -118,15 +131,10 @@ void Lamp::Use()
 	turnedOn = !turnedOn;
 }
 
-EmptyHand::EmptyHand()
-{
-
-}
-void EmptyHand::Use() {
-
-}
-const void EmptyHand::Description() {
-	cout << "Your hand is empty.";
-}
-
 Cat Mittens;
+Item* mittens = &Mittens;
+Lamp Lantern;
+Item* lantern = &Lantern;
+BoxOfDonuts EmpDonuts;
+Item* donuts = &EmpDonuts;
+Item* emptyHand;

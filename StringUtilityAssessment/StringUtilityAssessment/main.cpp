@@ -284,7 +284,7 @@ void printTextToFile() {
 	time_t currentTime;
 	time(&currentTime);
 	std::fstream file;
-	file.open("testResults.txt", std::ios::out);
+	file.open("testResults.txt", std::ios::app);
 	file << "Test start!\nPreformed at : " << ctime(&currentTime);
 	float score = 0;
 	String HelloWorld{ "Hello World!" };
