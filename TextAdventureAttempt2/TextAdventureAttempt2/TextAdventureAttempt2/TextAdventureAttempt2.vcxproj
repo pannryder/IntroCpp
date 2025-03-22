@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{c6b4b018-3a6c-4e55-9150-71e40688f6be}</ProjectGuid>
-    <RootNamespace>TextAdventureAssessment</RootNamespace>
+    <ProjectGuid>{99066994-93e3-42aa-a37d-bd938e5b782a}</ProjectGuid>
+    <RootNamespace>TextAdventureAttempt2</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,7 +127,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Actions.cpp" />
+    <ClInclude Include="BoxOfDonuts.h" />
+    <ClInclude Include="Cat.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="Lamp.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Room.h" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="BoxOfDonuts.cpp" />
     <ClCompile Include="Cat.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -136,18 +144,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Room.cpp" />
-    <ClCompile Include="Spell.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Actions.h" />
-    <ClInclude Include="BoxOfDonuts.h" />
-    <ClInclude Include="Cat.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="Item.h" />
-    <ClInclude Include="Lamp.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="Room.h" />
-    <ClInclude Include="Spell.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

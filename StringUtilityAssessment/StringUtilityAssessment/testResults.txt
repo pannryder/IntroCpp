@@ -28,3 +28,48 @@ TEST 9 Replace : PASSED
 TEST 10 operator= : PASSED
 Success rate : 100%
 
+Test start!
+Preformed at : Sat Mar 22 15:27:08 2025
+
+TEST 1 Length : PASSED
+TEST 2 operator== : PASSED
+TEST 3 operator< : PASSED
+TEST 4 operator[] : PASSED
+TEST 5 Append : PASSED
+TEST 6 ToUpper : PASSED
+TEST 7 ToLower : PASSED
+TEST 8 FindCharacter : PASSED
+TEST 9 Replace : PASSED
+TEST 10 operator= : PASSED
+Success rate : 100%
+
+Test start!
+Preformed at : Sat Mar 22 15:27:20 2025
+
+TEST 1 Length : PASSED
+TEST 2 operator== : PASSED
+TEST 3 operator< : PASSED
+TEST 4 operator[] : PASSED
+TEST 5 Append : FAILED
+TEST 6 ToUpper : FAILED
+TEST 7 ToLower : FAILED
+TEST 8 FindCharacter : PASSED
+TEST 9 Replace : FAILED
+TEST 10 operator= : PASSED
+Success rate : 60%
+
+Test start!
+Preformed at : Sat Mar 22 15:27:28 2025
+
+TEST 1 Length : PASSED
+TEST 2 operator== : PASSED
+TEST 3 operator< : PASSED
+TEST 4 operator[] : PASSED
+TEST 5 Append : PASSED
+TEST 6 ToUpper : PASSED
+TEST 7 ToLower : PASSED
+TEST 8 FindCharacter : PASSED
+TEST 9 Replace : PASSED
+TEST 10 operator= : PASSED
+Success rate : 100%
+
