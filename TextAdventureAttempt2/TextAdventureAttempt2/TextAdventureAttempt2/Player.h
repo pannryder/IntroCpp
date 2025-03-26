@@ -1,18 +1,16 @@
 #pragma once
 #include <iostream>
 #include <vector>
-
-using std::vector;
-using std::string;
+#include <string>
 
 //Defualt Player Class
 class Player 
 {
 private:
-    vector<string> spells;
-    bool SearchSpell(const string& spell, int left, int right);
+    std::vector<std::string> spells;
+    bool SearchSpell(const std::string& spell, int left, int right);
 public:
     Player();
     ~Player();
-    bool FindSpell(const string& spell);
+    bool FindSpell(const std::string& spell);
 };

@@ -1,8 +1,6 @@
 #include "Lamp.h"
 #include <iostream>
 
-using std::cout;
-
 Lamp::Lamp() 
     : turnedOn(false)
 {

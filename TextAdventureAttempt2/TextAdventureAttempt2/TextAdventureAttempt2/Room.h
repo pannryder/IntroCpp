@@ -1,24 +1,25 @@
 #pragma once
 #include <iostream>
+#include <string>
 #include "Item.h"
-
-using std::string;
 
 //Defualt Room Class
 class Room 
 {
 private:
-    string description;
-    Item* item;
+    std::string description;
     Room* north;
     Room* south;
     Room* east;
     Room* west;
 public:
-    Room(const string& desc, Item* item);
+    Room();
+    Room(const std::string& desc, Item* item);
     ~Room();
+    Item* item;
     void Description() const;
+    void SetRoom(const std::string& desc, Item* item);
     void DefineExits(Room* n, Room* s, Room* e, Room* w);
-    Room* ReturnExit(const string& direction);
+    Room* ReturnExit(const std::string& direction);
     Item* GetItem();
 };

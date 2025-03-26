@@ -1,22 +1,30 @@
 #include "Room.h"
 #include <iostream>
 
-using std::cout;
-
-Room::Room(const string& desc, Item* item) 
-    : description(desc), item(item), north(nullptr), south(nullptr), east(nullptr), west(nullptr)
+Room::Room()
+    : item(nullptr), north(nullptr), south(nullptr), east(nullptr), west(nullptr)
 {
 }
 
+Room::Room(const std::string& desc, Item* item)
+    : description(desc), item(item), north(nullptr), south(nullptr), east(nullptr), west(nullptr)
+{
+}
 
 Room::~Room() 
 {
     delete item;
 }
 
+void Room::SetRoom(const std::string& desc, Item* item) 
+{
+    description = desc;
+    this->item = item;
+}
+
 void Room::Description() const 
 {
-    cout << description << "\n";
+    std::cout << description << "\n";
     if (item) item->Description();
 }
 
@@ -28,7 +36,7 @@ void Room::DefineExits(Room* n, Room* s, Room* e, Room* w)
     west = w;
 }
 
-Room* Room::ReturnExit(const string& direction) 
+Room* Room::ReturnExit(const std::string& direction) 
 {
     if (direction == "NORTH") 
     {

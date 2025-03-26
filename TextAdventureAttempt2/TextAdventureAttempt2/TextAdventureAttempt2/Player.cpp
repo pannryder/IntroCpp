@@ -1,11 +1,8 @@
 #include "Player.h"
-#include <algorithm>
-
-using std::sort;
 
 Player::Player()
 {
-    spells = {"Torrent","Encase","Humm","Strum","Desire"};
+    spells = {"Desire","Encase","Humm","Strum","Torrent"};
 }
 
 Player::~Player()
@@ -13,28 +10,25 @@ Player::~Player()
 }
 
 //Binary search for spells
-bool Player::SearchSpell(const string& spell, int left, int right) 
+bool Player::SearchSpell(const std::string& spell, int left, int right)
 {
-    if (left > right)
-    {
-        return false;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (spells[mid] == spell) {
+            return true;
+        }
+        else if (spells[mid] < spell) {
+            left = mid + 1;
+        }
+        else {
+            right = mid - 1;
+        }
     }
-    int mid = left + (right - left) / 2;
-
-    if (spells[mid] == spell)
-    {
-        return true;
-    }
-    if (spells[mid] > spell) 
-    {
-        return SearchSpell(spell, left, mid - 1);
-    }
-    return SearchSpell(spell, mid + 1, right);
+    return false;
 }
 
-// Ensure the list is sorted before searching
-bool Player::FindSpell(const string& spell) 
+// Searches for spell
+bool Player::FindSpell(const std::string& spell)
 {
-    sort(spells.begin(), spells.end());
     return SearchSpell(spell, 0, spells.size() - 1);
 }
